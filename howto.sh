@@ -56,3 +56,16 @@ rspec -e rq03
 rails g model todo_list list_name list_due_date:date
 rake db:migrate
 rspec -e rq04
+
+# 5. Create a database migration 
+rails g migration add_user_to_todo_lists user:references
+# define models
+# class TodoList < ActiveRecord::Base
+#  belongs_to :user
+#end
+#class User < ActiveRecord::Base
+#  has_one :profile
+#  has_many :todo_lists
+#end
+rake db:migrate
+rspec -e rq05
