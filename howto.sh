@@ -23,3 +23,8 @@ rspec          # fails (should fail)
 rspec -e rq01  # pass test rq01 (directory structure)
 git commit -m "passing first test with: rspec -e rq01"
 git push 
+
+# creating models
+rails g model user username password_digest
+rake db:migrate
+rspec -e rq02  # pass test rq02 (user model)
