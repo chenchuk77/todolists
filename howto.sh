@@ -59,7 +59,7 @@ rspec -e rq04
 
 # 5. Create a database migration 
 rails g migration add_user_to_todo_lists user:references
-# define models
+# define relations between models
 # class TodoList < ActiveRecord::Base
 #  belongs_to :user
 #end
@@ -69,3 +69,19 @@ rails g migration add_user_to_todo_lists user:references
 #end
 rake db:migrate
 rspec -e rq05
+
+# 6. create TodoItem model
+rails g model todo_item \
+      due_date:date \
+      title \
+      description:text \
+      completed:boolean \
+      todo_list:references
+# define relations between models
+# class TodoList < ActiveRecord::Base
+#   belongs_to :user
+#   has_many :todo_items
+# end
+# class TodoItem < ActiveRecord::Base
+#   belongs_to :todo_list
+# end
