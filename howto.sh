@@ -92,3 +92,6 @@ rails g model todo_item \
 #   has_many :todo_lists, dependent: :destroy
 #   has_many :todo_items, through: :todo_lists, source: :todo_items
 # end
+
+# 9. create seeds.rb
+
