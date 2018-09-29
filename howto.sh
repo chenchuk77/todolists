@@ -43,15 +43,16 @@ rspec -e rq02  # pass test rq02 (user model)
 
 # 3. create Profile model 
 rails g model profile gender birth_year:integer first_name last_name user:references
-
 # define the User model relation to Profile.
 # NOTE: Profile model relation (belongs_to: user) defined automatically by 'user:references')
-
 # user.rb
 # class User < ActiveRecord::Base
 #   has_one :profile
 # end
-
 rake db:migrate
 rspec -e rq03
 
+# 4. create TodoList model
+rails g model todo_list list_name list_due_date:date
+rake db:migrate
+rspec -e rq04
