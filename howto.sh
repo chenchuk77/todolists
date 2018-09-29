@@ -19,12 +19,39 @@ echo "--format documentation" >> .rspec  # verbose output
 # also copy spec/assignment.rb and README*
 #
 
+# An Entity Relationship (ER) diagram 
+#
+# |------| 1      1 |---------|
+# | User |----------| Profile |
+# |------|          |---------|
+#     \
+#      \
+#       \ 1   * |----------| 1      * |----------|
+#        \------| TodoList |----------| TodoItem |
+#               |----------|          |----------|
+
+# 1. test rails app structure
 rspec          # fails (should fail)
 rspec -e rq01  # pass test rq01 (directory structure)
 git commit -m "passing first test with: rspec -e rq01"
 git push 
 
-# creating models
+# 2. creating User model
 rails g model user username password_digest
 rake db:migrate
 rspec -e rq02  # pass test rq02 (user model)
+
+# 3. create Profile model 
+rails g model profile gender birth_year:integer first_name last_name user:references
+
+# define the User model relation to Profile.
+# NOTE: Profile model relation (belongs_to: user) defined automatically by 'user:references')
+
+# user.rb
+# class User < ActiveRecord::Base
+#   has_one :profile
+# end
+
+rake db:migrate
+rspec -e rq03
+
