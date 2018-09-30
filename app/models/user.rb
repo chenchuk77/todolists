@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
 
+  def get_completed_count
+  	# self inside a method refers to this object
+  	self.todo_items.where(completed: true).count
+
+  end
 end
