@@ -15,6 +15,7 @@ User.create! [
 	{ username: "Carson",  password_digest: "CCCC" },
 	{ username: "Clinton", password_digest: "CCCC" }
 ]
+
 Profile.create! [
 	{ first_name: "Carly",   last_name: "Fiorina", birth_year: 1954, gender: "female" },
 	{ first_name: "Donald",  last_name: "Trump",   birth_year: 1946, gender: "male"   },
