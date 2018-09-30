@@ -21,4 +21,9 @@ class Profile < ActiveRecord::Base
 
   # custom (singular)
   validate :any_name, :no_sue_male
+
+  # self outside a method refers to this class ( ie, static method)
+  def self.get_all_profiles(min, max)
+  	Profile.where("birth_year between ? and ?", min, max).order(:birth_year)
+  end
 end
