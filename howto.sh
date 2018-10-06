@@ -95,3 +95,16 @@ rails g model todo_item \
 
 # 9. create seeds.rb
 
+
+
+######################  module 4 #####################
+######################################################
+
+
+rake db:migrate RAILS_ENV=development
+rspec    # fails
+
+rspec spec/start_spec.rb -e rq1.0      # pass
+
+
+
