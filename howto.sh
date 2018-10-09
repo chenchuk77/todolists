@@ -8,6 +8,7 @@ git init
 git add .
 git commit -m "initial commit"
 git remote add origin https://github.com/chenchuk77/todolists.git
+# git remote set-url origin git@github.com:chenchuk77/todolists.git
 git push -u origin master
 vim Gemfile    # add rspec-rails ~> 3.0
 bundle
