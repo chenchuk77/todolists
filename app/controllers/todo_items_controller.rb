@@ -1,4 +1,5 @@
 class TodoItemsController < ApplicationController
+  before_action :set_todo_list, only: [:create, :new, :show, :edit, :update, :destroy]
   before_action :set_todo_item, only: [:show, :edit, :update, :destroy]
 
   # GET /todo_items/1
@@ -8,7 +9,11 @@ class TodoItemsController < ApplicationController
 
   # GET /todo_items/new
   def new
-    @todo_item = TodoItem.new
+    # @todo_item = TodoItem.new
+    puts "***** todo_items#new called ******"
+    @todo_item = @todo_list.todo_items.new
+
+
   end
 
   # GET /todo_items/1/edit
@@ -18,11 +23,13 @@ class TodoItemsController < ApplicationController
   # POST /todo_items
   # POST /todo_items.json
   def create
-    @todo_item = TodoItem.new(todo_item_params)
+    # @todo_item = @todo_list.todo_item.new(todo_item_params)
+    @todo_list.todo_items.new(todo_item_params)
 
     respond_to do |format|
-      if @todo_item.save
-        format.html { redirect_to @todo_item, notice: 'Todo item was successfully created.' }
+      # if @todo_item.save
+      if @todo_list.save
+        format.html { redirect_to @todo_list, notice: 'Todo item was successfully created.' }
         format.json { render :show, status: :created, location: @todo_item }
       else
         format.html { render :new }
@@ -36,7 +43,7 @@ class TodoItemsController < ApplicationController
   def update
     respond_to do |format|
       if @todo_item.update(todo_item_params)
-        format.html { redirect_to @todo_item, notice: 'Todo item was successfully updated.' }
+        format.html { redirect_to @todo_list, notice: 'Todo item was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo_item }
       else
         format.html { render :edit }
@@ -50,7 +57,7 @@ class TodoItemsController < ApplicationController
   def destroy
     @todo_item.destroy
     respond_to do |format|
-      format.html { redirect_to todo_items_url, notice: 'Todo item was successfully destroyed.' }
+      format.html { redirect_to @todo_list, notice: 'Todo item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -58,11 +65,20 @@ class TodoItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_item
-      @todo_item = TodoItem.where(todo_list_id: params[:todo_list_id])
+      # @todo_item = TodoItem.where(todo_list_id: params[:todo_list_id])
+      @todo_item = @todo_list.todo_items.find(params[:id])
+
+      puts "ITEM: *************** ID ===== #{@todo_item.id}"
+      puts "ITEM: *************** ID ===== #{@todo_item.todo_list_id}"
+
+      # TodoItem.where(todo_list_id: params[:todo_list_id])
     end
 
     def set_todo_list
       @todo_list = TodoList.find(params[:todo_list_id])
+      puts "LIST: *************** ID ===== #{@todo_list.id}"
+      #set_todo_item
+      #@todo_item
     end
 
 
