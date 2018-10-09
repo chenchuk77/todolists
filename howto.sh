@@ -108,5 +108,6 @@ rspec    # fails
 
 rspec spec/start_spec.rb -e rq1.0      # pass
 
+rails g controller sessions new create destroy
 
 

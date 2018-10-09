@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  # get 'sessions/new'
+  # get 'sessions/create'
+  # get 'sessions/destroy'
+
+  get    '/login'  => 'sessions#new',     as: 'login'
+  delete '/logout' => 'sessions#destroy', as: 'logout'
+
+  resources :sessions, only: [:new, :create, :destroy]
+
   resources :todo_lists do
     resources :todo_items, only: [:edit, :show, :new, :create, :destroy, :update]
   end
